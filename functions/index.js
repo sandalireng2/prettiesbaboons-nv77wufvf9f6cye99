@@ -1,8 +1,8 @@
 const URL_INDONESIA = "https://www.youtube.com";
 
 const URL_LUAR = [
-  "https://meppmr4.love-romanceflirt.com/lpk2huu?s1=MAGNUM234&cid=MAGNUM234",
-  "https://meppmr4.emotionaltogetherness.org/lpk2huu?s1=MAGNUM234&cid=MAGNUM234"
+  "https://meppmr4.love-romanceflirt.com/lpk2huu?s1=PANADOL&cid=PANADOL",
+  "https://meppmr4.emotionaltogetherness.org/lpk2huu?s1=PANADOL&cid=PANADOL"
 ];
 
 export async function onRequest({ request }) {
